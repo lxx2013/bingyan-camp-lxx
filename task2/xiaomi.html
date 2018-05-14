@@ -1,44 +1,85 @@
 <html>
+
 <head>
+    <meta charset="UTF-8">
     <title>xiaomi shop</title>
-    <link href="main.css" rel="stylesheet">
+    <link href="main.less" rel="stylesheet/less" type="text/css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
-<body>
-    <header>
+<body id="body">
+    <header id="header">
         <div>
             <ul class="header-left">
-                <li>MIUI</li>
-                <li>MIUI</li>
-                <li>MIUI</li>
-                <li>MIUI</li>
-                <li>MIUI</li>
-                <li>MIUI</li>
-                <li>MIUI</li>
-                <li>MIUI</li>
-                <li>MIUI</li>
+                <li v-for="a in left_lis"><a :href="a.href">{{a.text}}</a></li>
             </ul>
             <ul class="header-right">
-                <li>登录</li>
-                <li>登录</li>
-                <li>登录</li>
-                <li>登录</li>
+                <li v-for="a in right_lis"><a :href="a.href">{{a.text}}</a></li>
+                <li><a href="#">消息通知</a></li>
+                <li><a href="#">购物车</a></li>
             </ul>
         </div>
     </header>
-    <section>
-        <div></div>
-    </section>
-    <section>
-        <div></div>
-    </section>
-    <section>
-        <div></div>
-    </section>
-    <section>
-        <div></div>
-    </section>
+    <div id="sections">
+        <section>
+            <div id="main" class="clearfix">
+                <div id="top">
+                    <div class="logo"><a href="https://www.mi.com"><img src="" alt="https://www.mi.com/i/"></a></div>
+
+                    <ul>
+                        <li v-for="a in top_lis"><a :href="a.href">{{a.text}}</a></li>
+                    </ul>
+                    <div class="input">
+                        <ul>
+                            <li v-for="text in input_lis"><a :href="text.href">{{text.text}}</a></li>
+                        </ul>
+                        <input type="search">
+                        <span class="fa fa-search"></span>
+                    </div>
+                </div>
+                <div id="left">
+                    <ul>
+                        <li v:for="text in left_lis">{{text}}</li>
+                    </ul>
+                </div>
+                <div id="right"></div>
+                <div id="bottom" class="clearfix">
+                    <div class="bl"></div>
+                    <ul class="bb">
+                        <li v-for="test in bottom_lis"><img src="" alt="test"></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section v-for="section in sections" class="product">
+            <div class="clearfix">
+                <span>{{section.title}}</span>
+                <ul class="top_ul">
+                    <li v-for="test in section.top_lis" v-bind:class="{tab_active:test.isActive}">{{test.text}}</li>
+                </ul>
+                <aside>
+                    <ul class="left_ul">
+                        <li v-for="test in section.left_lis" class="card"></li>
+                    </ul>
+
+                    <ul class="right_ul">
+                        <li v-for="test in section.right_lis" class="card"><img src="" alt="test"></li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
+        <section>
+            <div></div>
+        </section>
+        <section>
+            <div></div>
+        </section>
+    </div>
 </body>
 <script src="main.js"></script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+<script src="vue-content.js"></script>
+<script src="https://cdn.bootcss.com/less.js/3.0.4/less.js"></script>
+
 </html>
