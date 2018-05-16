@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     font-size: 12px;
+    box-sizing: border-box;
 }
 
 a {
@@ -100,7 +101,7 @@ section:nth-of-type(2n) {
         border: #ccc 1px solid;
         float: right;
         width: 300px;
-        height: 50px;
+        height: 52px;
         margin: 25px 0;
         position: relative;
         input {
@@ -134,6 +135,7 @@ section:nth-of-type(2n) {
             margin-left: 0;
             li {
                 float: right;
+                box-sizing: content-box;
                 height: 15px;
                 padding: 2px 0px;
                 margin: 17px 10px;
@@ -160,6 +162,68 @@ section:nth-of-type(2n) {
     background: black;
     color: white;
     float: left;
+    position: relative;
+    padding: 20px 0;
+    box-sizing: border-box;
+    .left_list {
+        > a {
+            display: block;
+            height: 42px;
+            line-height: 44px;
+            font-size: 15px;
+            width: 234px;
+            padding: 0 0 0 30px;
+            color: white;
+        }
+        .children {
+            display: none;
+            width: 754px;
+            position: absolute;
+            background: white;
+            border: 1px solid #ccc;
+            box-shadow: 5px 5px 20px 0px #aaa;
+            left: 234px;
+            top: 0px;
+            .children_list {
+                list-style: none;
+                float: left;
+            }
+            .children_list_col {
+                a {
+                    display: block;
+                    width: 248px;
+                    height: 76px;
+                    padding: 18px 0px 18px 25px;
+                    span {
+                        display: inline-block;
+                        position: absolute;
+                        width: 188px;
+                        color: black;
+                        font-size: 14px;
+                        margin-left: 20px;
+                        height: 40px;
+                        line-height: 40px;
+                    }
+                    img {
+                        width: 40px;
+                        height: 40px;
+                    }
+                }
+                a:hover span {
+                    color: #ff6700;
+                }
+
+            }
+        }
+    }
+    .left_list:hover .children {
+        display: block;
+    }
+    .left_list:hover {
+        > a {
+            background: #ff6700;
+        }
+    }
 }
 
 #right {

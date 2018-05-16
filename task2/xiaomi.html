@@ -39,7 +39,16 @@
                 </div>
                 <div id="left">
                     <ul>
-                        <li v:for="text in left_lis">{{text}}</li>
+                        <li class="left_list" v-for="lli in left_lis">
+                            <a :href="lli.href">{{lli.text}}<span class="fa fa-right-arrow"></span></a>
+                            <div class="children">
+                                <ul class="children_list" v-for="list in lli.children_list">
+                                    <li class="children_list_col" v-for="li in list">
+                                        <a :href="li.href"><img :src="li.img" alt=""><span class="text">{{li.text}}</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </div>
                 <div id="right"></div>
