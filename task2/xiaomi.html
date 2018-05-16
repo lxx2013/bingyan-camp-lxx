@@ -40,7 +40,7 @@
                 <div id="left">
                     <ul>
                         <li class="left_list" v-for="lli in left_lis">
-                            <a :href="lli.href">{{lli.text}}<span class="fa fa-right-arrow"></span></a>
+                            <a :href="lli.href">{{lli.text}}<span class="fa fa-angle-right"></span></a>
                             <div class="children">
                                 <ul class="children_list" v-for="list in lli.children_list">
                                     <li class="children_list_col" v-for="li in list">
@@ -51,7 +51,12 @@
                         </li>
                     </ul>
                 </div>
-                <div id="right"></div>
+                <div id="right">
+                    <span class="left"><i class="fa fa-angle-left"></i></span><span class="right"><i class="fa fa-angle-right"></i></span>
+                    <ul class="focus_img">
+                        <li v-for="li in right_lis"><a :href="li.href"><img :src="li.img" alt=""></a></li>
+                    </ul>
+                </div>
                 <div id="bottom" class="clearfix">
                     <div class="bl"></div>
                     <ul class="bb">
@@ -90,5 +95,30 @@
 <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
 <script src="vue-content.js"></script>
 <script src="https://cdn.bootcss.com/less.js/3.0.4/less.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#left .children").each(function() {
+            num = $(this).find(".children_list").length;
+            $(this).css("width", num * 248 + 2)
+        })
+        $("#right li").eq(0).css("display", "block").siblings().css("display", "none");
+        var focus_index = 0;
+        $("#right span.left").click(function() {
+            focus_index--;
+            len = $("#right li").length
+            if (focus_index < 0)
+                focus_index = len - 1;
+            $("#right li").eq(focus_index).fadeIn().siblings().fadeOut();
+        })
+        $("#right span.right").click(function() {
+            focus_index++;
+            len = $("#right li").length
+            if (focus_index >= len)
+                focus_index = 0;
+            $("#right li").eq(focus_index).fadeIn().siblings().fadeOut();
+        })
+    })
+
+</script>
 
 </html>

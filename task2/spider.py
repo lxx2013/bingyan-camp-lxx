@@ -8,7 +8,7 @@ soup = webdriver.Chrome()
 
 
 vues = [{'el':"#header",'data':{'left_lis':[],'right_lis':[]}},
-        {'el':"#main",'data':{'top_lis':[],'input_lis':[],'left_lis':[],'bottom_lis':[]}},
+        {'el':"#main",'data':{'top_lis':[],'input_lis':[],'left_lis':[],'bottom_lis':[],'right_lis':[]}},
         {'el':"#sections",'data':{'sections':[]}}]
 fout = codecs.open("xiaomi_backup.js","w+","utf-8")
 root_url = "https://www.mi.com/"
@@ -51,6 +51,14 @@ for lli in main_left_lis:
             one_col.append({'href':c_href,'img':c_img,'text':c_text})
         c['children_list'].append(one_col)
     vues[1]['data']['left_lis'].append(c)
+#2.4 #main right img
+main_right = soup.find_elements_by_css_selector("#J_homeSlider a")
+for a in main_right:
+    img = a.find_elements_by_css_selector("img")[0]
+    src = urljoin(root_url,img.get_attribute("src"))
+    vues[1]['data']['right_lis'].append({'href':a.get_attribute("href"),"img":src})
+
+
 
 #print_out
 for vue in vues:
